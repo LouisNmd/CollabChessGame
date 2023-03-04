@@ -1,0 +1,5 @@
+<mat-grid-list cols="8" rowHeight="10vh" gutterSize="0px">
+    <div *ngFor="let line of this.board.getCases()">
+        <mat-grid-tile *ngFor="let case of line">{{ case ? (case.getName() | HTMLCodePipe) : ""}}</mat-grid-tile>
+    </div>
+</mat-grid-list>
