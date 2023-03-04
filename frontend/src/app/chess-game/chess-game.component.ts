@@ -8,7 +8,7 @@ import { Board } from 'src/models/board';
 })
 export class ChessGameComponent implements OnInit {
 
-  private isWhite: boolean = true;
+  private isWhite: boolean = false;
   board: Board = new Board();
 
   constructor() {}
@@ -16,7 +16,8 @@ export class ChessGameComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setTileColorClass(): String {
+  setTileColorClass(index: number): String {
+    if(index == 0) this.isWhite = !this.isWhite;
     if(this.isWhite) {
       this.isWhite = false;
       return "white-tile";
@@ -25,5 +26,4 @@ export class ChessGameComponent implements OnInit {
       return "black-tile";
     }
   }
-
 }
