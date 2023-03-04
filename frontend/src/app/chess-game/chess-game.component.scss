@@ -1,0 +1,27 @@
+mat-grid-tile {
+}
+
+mat-grid-list {
+    width: 80vh;
+    padding: 0;
+    font-size: 3em;
+    border: 10px solid brown;
+}
+
+.black-tile {
+    height: 100%;
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.white-tile {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
