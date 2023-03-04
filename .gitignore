@@ -1,0 +1,4 @@
+# Angular related
+*/node_modules
+*/.vscode
+*/.angular
