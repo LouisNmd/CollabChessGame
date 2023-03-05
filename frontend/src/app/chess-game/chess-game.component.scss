@@ -1,10 +1,11 @@
 mat-grid-tile {
+    overflow: visible !important;
 }
 
 mat-grid-list {
     width: 80vh;
     padding: 0;
-    font-size: 3em;
+    font-size: 8vh;
     border: 10px solid brown;
 }
 
@@ -17,6 +18,10 @@ mat-grid-list {
     justify-content: center;
 }
 
+.black-tile:hover, .white-tile:hover {
+    background-color: blue;
+}
+
 .white-tile {
     height: 100%;
     width: 100%;
@@ -24,4 +29,12 @@ mat-grid-list {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.piece {
+    cursor: grab;
+}
+
+.piece:active {
+    //z-index: 9999;
 }

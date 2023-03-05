@@ -1,7 +1,17 @@
-<mat-grid-list cols="8" rowHeight="10vh" gutterSize="0px">
-    <div *ngFor="let line of this.board.getCases()">
-        <mat-grid-tile *ngFor="let case of line; let index=index">
-            <div [ngClass]="this.setTileColorClass(index)">{{ case ? (case.getName() | HTMLCodePipe) : ""}}</div>
+<mat-grid-list cols="8" rowHeight="10vh" gutterSize="0px" class="board">
+    <div *ngFor="let line of this.board.getCases(); let index=index" >
+        <mat-grid-tile *ngFor="let case of line; let index=index" >
+            <div [ngClass]="this.setTileColorClass(index)">
+                <div
+                    class="piece" 
+                    cdkDrag 
+                    [cdkDragFreeDragPosition]="dragPosition" 
+                    cdkDragBoundary=".board"
+                    (cdkDragDropped)="drop($event)"
+                >
+                    {{ case ? (case.getName() | HTMLCodePipe) : ""}}
+                </div>
+            </div>
         </mat-grid-tile>
     </div>
 </mat-grid-list>

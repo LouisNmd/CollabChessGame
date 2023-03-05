@@ -1,5 +1,7 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Board } from 'src/models/board';
+import { Piece } from 'src/models/Piece';
 
 @Component({
   selector: 'app-chess-game',
@@ -9,7 +11,10 @@ import { Board } from 'src/models/board';
 export class ChessGameComponent implements OnInit {
 
   private isWhite: boolean = false;
+  private draggingPiece!: Piece;
   board: Board = new Board();
+  dragPosition = {x: 0, y: 0};
+  isDragging: boolean = false;
 
   constructor() {}
 
@@ -25,5 +30,11 @@ export class ChessGameComponent implements OnInit {
       this.isWhite = true;
       return "black-tile";
     }
+  }
+
+  drop(event: CdkDragDrop<any>) {
+    //this.board.cases[event.previousContainer.data.index]=event.container.data.item
+    //this.board.cases[event.container.data.index]=event.previousContainer.data.item
+    console.log(event);
   }
 }
