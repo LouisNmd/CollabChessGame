@@ -1,50 +1,52 @@
 import { Color } from "./color";
+import { Piece } from "./Piece";
 import { Bishop } from "./pieces/bishop";
 import { King } from "./pieces/king";
 import { Knight } from "./pieces/knight";
 import { Pawn } from "./pieces/pawn";
 import { Queen } from "./pieces/queen";
 import { Rook } from "./pieces/rook";
+import { Vote } from "./vote";
 
 export class Board {
 
     // Black
-    blackRook1 = new Rook(0, 7, Color.BLACK);
-    blackKnight1 = new Knight(1, 7, Color.BLACK);
-    blackBishop1 = new Bishop(2, 7, Color.BLACK);
-    blackQueen = new Queen(3, 7, Color.BLACK);
-    blackKing = new King(4, 7, Color.BLACK);
-    blackBishop2 = new Bishop(5, 7, Color.BLACK);
-    blackKnight2 = new Knight(6, 7, Color.BLACK);
-    blackRook2 = new Rook(7, 7, Color.BLACK);
+    private blackRook1 = new Rook(0, 7, Color.BLACK);
+    private blackKnight1 = new Knight(1, 7, Color.BLACK);
+    private blackBishop1 = new Bishop(2, 7, Color.BLACK);
+    private blackQueen = new Queen(3, 7, Color.BLACK);
+    private blackKing = new King(4, 7, Color.BLACK);
+    private blackBishop2 = new Bishop(5, 7, Color.BLACK);
+    private blackKnight2 = new Knight(6, 7, Color.BLACK);
+    private blackRook2 = new Rook(7, 7, Color.BLACK);
+    
+    private blackPawn1 = new Pawn(0, 6, Color.BLACK);
+    private blackPawn2 = new Pawn(1, 6, Color.BLACK);
+    private blackPawn3 = new Pawn(2, 6, Color.BLACK);
+    private blackPawn4 = new Pawn(3, 6, Color.BLACK);
+    private blackPawn5 = new Pawn(4, 6, Color.BLACK);
+    private blackPawn6 = new Pawn(5, 6, Color.BLACK);
+    private blackPawn7 = new Pawn(6, 6, Color.BLACK);
+    private blackPawn8 = new Pawn(7, 6, Color.BLACK);
+    
+     // White
+    private whiteRook1 = new Rook(0, 0, Color.WHITE);
+    private whiteKnight1 = new Knight(1, 0, Color.WHITE);
+    private whiteBishop1 = new Bishop(2, 0, Color.WHITE);
+    private whiteQueen = new Queen(3, 0, Color.WHITE);
+    private whiteKing = new King(4, 0, Color.WHITE);
+    private whiteBishop2 = new Bishop(5, 0, Color.WHITE);
+    private whiteKnight2 = new Knight(6, 0, Color.WHITE);
+    private whiteRook2 = new Rook(7, 0, Color.WHITE);
 
-    blackPawn1 = new Pawn(0, 6, Color.BLACK);
-    blackPawn2 = new Pawn(1, 6, Color.BLACK);
-    blackPawn3 = new Pawn(2, 6, Color.BLACK);
-    blackPawn4 = new Pawn(3, 6, Color.BLACK);
-    blackPawn5 = new Pawn(4, 6, Color.BLACK);
-    blackPawn6 = new Pawn(5, 6, Color.BLACK);
-    blackPawn7 = new Pawn(6, 6, Color.BLACK);
-    blackPawn8 = new Pawn(7, 6, Color.BLACK);
-
-    // White
-    whiteRook1 = new Rook(0, 0, Color.WHITE);
-    whiteKnight1 = new Knight(1, 0, Color.WHITE);
-    whiteBishop1 = new Bishop(2, 0, Color.WHITE);
-    whiteQueen = new Queen(3, 0, Color.WHITE);
-    whiteKing = new King(4, 0, Color.WHITE);
-    whiteBishop2 = new Bishop(5, 0, Color.WHITE);
-    whiteKnight2 = new Knight(6, 0, Color.WHITE);
-    whiteRook2 = new Rook(7, 0, Color.WHITE);
-
-    whitePawn1 = new Pawn(0, 6, Color.WHITE);
-    whitePawn2 = new Pawn(1, 6, Color.WHITE);
-    whitePawn3 = new Pawn(2, 6, Color.WHITE);
-    whitePawn4 = new Pawn(3, 6, Color.WHITE);
-    whitePawn5 = new Pawn(4, 6, Color.WHITE);
-    whitePawn6 = new Pawn(5, 6, Color.WHITE);
-    whitePawn7 = new Pawn(6, 6, Color.WHITE);
-    whitePawn8 = new Pawn(7, 6, Color.WHITE);
+    private whitePawn1 = new Pawn(0, 6, Color.WHITE);
+    private whitePawn2 = new Pawn(1, 6, Color.WHITE);
+    private whitePawn3 = new Pawn(2, 6, Color.WHITE);
+    private whitePawn4 = new Pawn(3, 6, Color.WHITE);
+    private whitePawn5 = new Pawn(4, 6, Color.WHITE);
+    private whitePawn6 = new Pawn(5, 6, Color.WHITE);
+    private whitePawn7 = new Pawn(6, 6, Color.WHITE);
+    private whitePawn8 = new Pawn(7, 6, Color.WHITE);
 
     cases: any[][];
 
@@ -63,5 +65,26 @@ export class Board {
 
     public getCases(): any[][] {
         return this.cases;
+    }
+
+    public getFlatCases(): any[] {
+        return this.cases.reduce((accumulator, value) => accumulator.concat(value));
+    }
+
+    public movePieceWithFlatCoord(previousIndex: number, currentIndex: number): void {
+        let previousVote = Board.flatCoorMapper(previousIndex);
+        let currentVote = Board.flatCoorMapper(currentIndex);
+
+        let movedPiece = this.cases[previousVote.x][previousVote.y];
+        this.cases[previousVote.x][previousVote.y] = null;
+
+        this.cases[currentVote.x][currentVote.y] = movedPiece;
+    }
+
+    public static flatCoorMapper(index: number): Vote {
+        let y: number = index%8;
+        let x: number = Math.floor(index/8);
+
+        return new Vote(x, y);
     }
 }

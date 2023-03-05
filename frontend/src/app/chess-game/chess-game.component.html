@@ -1,7 +1,25 @@
-<mat-grid-list cols="8" rowHeight="10vh" gutterSize="0px">
-    <div *ngFor="let line of this.board.getCases()">
-        <mat-grid-tile *ngFor="let case of line; let index=index">
-            <div [ngClass]="this.setTileColorClass(index)">{{ case ? (case.getName() | HTMLCodePipe) : ""}}</div>
+<div class="board">
+    <mat-grid-list cols="8" rowHeight="10vh" gutterSize="0px" cdkDropListGroup>
+        <mat-grid-tile *ngFor="let case of this.board.getFlatCases(); let index=index">
+            <div 
+                [ngClass]="this.setTileColorClass(index)" 
+                cdkDropList 
+                [cdkDropListData]="{item: case, index: index}" 
+                cdkDropListOrientation="horizontal" 
+                (cdkDropListDropped)="movePiece($event)"
+            >
+                <div
+                    class="piece" 
+                    cdkDrag
+                    [cdkDragDisabled]="from!=null && to!=null"
+                >
+                    {{ case ? (case.getName() | HTMLCodePipe) : ""}}
+                </div>
+            </div>
         </mat-grid-tile>
+    </mat-grid-list>
+    <div class="interface-vote">
+        <div *ngIf="from && to; else elseBlock">Vous avez voté pour {{ from | chessCase }} vers {{ to | chessCase }}</div>
+        <ng-template #elseBlock>Vous n'avez pas encore voté</ng-template>
     </div>
-</mat-grid-list>
+</div>
