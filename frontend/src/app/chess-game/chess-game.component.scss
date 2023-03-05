@@ -35,6 +35,6 @@ mat-grid-list {
     cursor: grab;
 }
 
-.piece:active {
-    //z-index: 9999;
+.drop-preview {
+    display: none;
 }
