@@ -7,13 +7,15 @@ import { ChessGameComponent } from './chess-game/chess-game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HTMLCodePipe } from './pipe/htmlcode.pipe';
-import { CDK_DRAG_CONFIG, DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ChessCasePipe } from './pipe/chess-case.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChessGameComponent,
-    HTMLCodePipe
+    HTMLCodePipe,
+    ChessCasePipe
   ],
   imports: [
     BrowserModule,

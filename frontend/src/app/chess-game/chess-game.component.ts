@@ -2,6 +2,7 @@ import { CdkDragDrop, CdkDragEnter, CdkDragRelease } from '@angular/cdk/drag-dro
 import { Component, OnInit } from '@angular/core';
 import { Board } from 'src/models/board';
 import { Piece } from 'src/models/Piece';
+import { Vote } from 'src/models/vote';
 
 @Component({
   selector: 'app-chess-game',
@@ -15,6 +16,9 @@ export class ChessGameComponent implements OnInit {
   board: Board = new Board();
   dragPosition = {x: 0, y: 0};
   isDragging: boolean = false;
+  
+  from!: Vote;
+  to!: Vote;
 
   constructor() {}
 
@@ -35,7 +39,8 @@ export class ChessGameComponent implements OnInit {
   }
 
   movePiece(event: CdkDragDrop<any>) {
+    this.from = Board.flatCoorMapper(event.previousContainer.data.index);
+    this.to = Board.flatCoorMapper(event.container.data.index);
     this.board.movePieceWithFlatCoord(event.previousContainer.data.index, event.container.data.index);
-    console.log("Déplacement de " + event.previousContainer.data.index + " vers " + event.container.data.index);
   }
 }

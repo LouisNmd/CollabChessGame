@@ -6,6 +6,7 @@ import { Knight } from "./pieces/knight";
 import { Pawn } from "./pieces/pawn";
 import { Queen } from "./pieces/queen";
 import { Rook } from "./pieces/rook";
+import { Vote } from "./vote";
 
 export class Board {
 
@@ -71,20 +72,19 @@ export class Board {
     }
 
     public movePieceWithFlatCoord(previousIndex: number, currentIndex: number): void {
-        console.log(this.cases);
+        let previousVote = Board.flatCoorMapper(previousIndex);
+        let currentVote = Board.flatCoorMapper(currentIndex);
 
-        let previousY: number = previousIndex%8;
-        let previousX: number = Math.floor(previousIndex/8);
-        console.log(previousIndex + " => " + previousX + ", " + previousY);
-        
-        let currentY: number = currentIndex%8;
-        let currentX: number = Math.floor(currentIndex/8);
-        console.log(currentIndex + " => " + currentX + ", " + currentY);
+        let movedPiece = this.cases[previousVote.x][previousVote.y];
+        this.cases[previousVote.x][previousVote.y] = null;
 
-        let movedPiece = this.cases[previousX][previousY];
-        console.log(this.cases[previousX][previousY]);
-        this.cases[previousX][previousY] = null;
+        this.cases[currentVote.x][currentVote.y] = movedPiece;
+    }
 
-        this.cases[currentX][currentY] = movedPiece;
+    public static flatCoorMapper(index: number): Vote {
+        let y: number = index%8;
+        let x: number = Math.floor(index/8);
+
+        return new Vote(x, y);
     }
 }

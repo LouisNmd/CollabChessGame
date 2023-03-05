@@ -38,3 +38,14 @@ mat-grid-list {
 .drop-preview {
     display: none;
 }
+
+.board {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.interface-vote {
+    margin-left: 50px;
+}
