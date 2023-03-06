@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgxChessBoardView } from 'ngx-chess-board';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend';
+  @ViewChild('board', {static: false}) board!: NgxChessBoardView;
+
+  lastVote: any;
+  hasGameStarted: boolean = false;
+
+  public vote(event: any): void {
+    this.lastVote = event;
+  }
 }
