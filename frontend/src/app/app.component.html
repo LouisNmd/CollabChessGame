@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<div class="ccg-main-content">
+    <ngx-chess-board 
+        #board 
+        (moveChange)="this.vote($event)" 
+        [darkDisabled]="!this.hasGameStarted"
+        [lightDisabled]="!this.hasGameStarted"
+        [dragDisabled]="!this.hasGameStarted"
+    >
+    </ngx-chess-board>
+    <div *ngIf="this.lastVote">
+        Vous avez voté pour {{ this.lastVote.move }}
+    </div>
+</div>

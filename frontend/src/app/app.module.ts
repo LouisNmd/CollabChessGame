@@ -3,26 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChessGameComponent } from './chess-game/chess-game.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { HTMLCodePipe } from './pipe/htmlcode.pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ChessCasePipe } from './pipe/chess-case.pipe';
+import { NgxChessBoardModule } from 'ngx-chess-board';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChessGameComponent,
-    HTMLCodePipe,
-    ChessCasePipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatGridListModule,
-    DragDropModule
+    DragDropModule,
+    NgxChessBoardModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
