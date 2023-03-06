@@ -2,3 +2,8 @@
 */node_modules
 */.vscode
 */.angular
+
+# IntelliJ related
+*/.idea
+.idea
+*.iml
