@@ -13,7 +13,7 @@ export class HTMLCodePipe implements PipeTransform {
         case "ROOK_BLACK":
             return "\u265c";
         case "KNIGHT_BLACK":
-            return "\u265a";
+            return "\u265e";
         case "BISHOP_BLACK":
             return "\u265d";
         case "QUEEN_BLACK":
@@ -35,7 +35,7 @@ export class HTMLCodePipe implements PipeTransform {
         case "KING_WHITE":
             return "\u2654";
         default:
-            throw new Error("Unkown piece " + value);
+            return "";
     }
 }
 

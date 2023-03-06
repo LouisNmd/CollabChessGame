@@ -6,14 +6,11 @@
                 cdkDropList 
                 [cdkDropListData]="{item: case, index: index}" 
                 cdkDropListOrientation="horizontal" 
-                (cdkDropListDropped)="movePiece($event)"
+                (cdkDropListDropped)="endingDrag($event)"
             >
-                <div
-                    class="piece" 
-                    cdkDrag
-                    [cdkDragDisabled]="from!=null && to!=null"
-                >
-                    {{ case ? (case.getName() | HTMLCodePipe) : ""}}
+                <span [ngClass]="this.getDotClass(index)"></span>
+                <div class="piece" cdkDrag (cdkDragStarted)="startingDrag($event)">
+                    {{ case.getName() | HTMLCodePipe}}
                 </div>
             </div>
         </mat-grid-tile>

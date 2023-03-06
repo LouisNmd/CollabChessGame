@@ -1,4 +1,5 @@
 import { Color } from "./color";
+import { Vote } from "./vote";
 
 /**
  * Classe abstraite d'une pièce d'échec.
@@ -6,31 +7,23 @@ import { Color } from "./color";
  */
 export abstract class Piece {
 
-    x: number;
-    y: number;
     name: String;
     color: Color;
+    isCheck: boolean;
 
-    constructor(x: number, y: number, name: String, color: Color) {
-        this.x = x;
-        this.y = y;
+    constructor(name: String, color: Color) {
         this.name = name
         this.color = color;
+        this.isCheck = false;
     }
 
-    protected abstract isMoveValid(targetX: number, targetY: number): boolean;
-    
-    move(targetX: number, targetY: number): boolean {
-        if(this.isMoveValid(targetX, targetY)) {
-            this.x = targetX;
-            this.y = targetY;
-            return true;
-        } else {
-            return false
-        }
-    }
+    public abstract allowedMoves(from: Vote, cases: any[][]): number[];
 
     getName(): String {
         return this.name;
+    }
+
+    public isEmptyPiece(): boolean {
+        return this.name == "empty";
     }
 }

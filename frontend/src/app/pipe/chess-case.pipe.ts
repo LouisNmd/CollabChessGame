@@ -11,8 +11,8 @@ export class ChessCasePipe implements PipeTransform {
   transform(vote: Vote): String {
     let result = "";
     
-    result += String.fromCharCode(vote.y + this.ASCII_OFFSET_UPPERCASE);
-    result += (vote.x + 1).toString();
+    result += String.fromCharCode(vote.x + this.ASCII_OFFSET_UPPERCASE);
+    result += (vote.y + 1).toString();
 
     return result;
   }
