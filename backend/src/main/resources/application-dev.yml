@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      database: ccg-db
+      uri: mongodb://localhost:27017/ccg-db
