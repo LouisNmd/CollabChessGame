@@ -17,6 +17,8 @@
         <java.version>17</java.version>
         <openapi.version>3.0.0</openapi.version>
         <lombok.version>1.18.26</lombok.version>
+        <slf4j.version>2.0.6</slf4j.version>
+        <slf4j-provider.version>2.0.6</slf4j-provider.version>
     </properties>
     <dependencies>
         <dependency>
@@ -48,7 +50,18 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-reload4j</artifactId>
+            <version>${slf4j-provider.version}</version>
+        </dependency>
 
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

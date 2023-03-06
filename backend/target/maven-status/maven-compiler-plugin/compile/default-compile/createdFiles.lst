@@ -1,2 +1,8 @@
 com\namron\collaborativechessgame\CollaborativeChessGameApplication.class
+com\namron\collaborativechessgame\controller\GameController.class
 com\namron\collaborativechessgame\controller\TestController.class
+com\namron\collaborativechessgame\game\GameRepository.class
+com\namron\collaborativechessgame\game\model\Game.class
+com\namron\collaborativechessgame\game\GameRepositoryManager.class
+com\namron\collaborativechessgame\game\service\GameKeyGenerator.class
+com\namron\collaborativechessgame\models\Player.class
