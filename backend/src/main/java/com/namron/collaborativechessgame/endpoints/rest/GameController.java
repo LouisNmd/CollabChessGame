@@ -25,12 +25,6 @@ public class GameController {
         return gameId;
     }
 
-    @PostMapping("/join/{id}/{color}")
-    public void join(@PathVariable String id, @PathVariable Color color, @RequestBody String playerName) {
-        LOGGER.debug("Connexion à la partie en cours...");
-        gameRepositoryManager.connectPlayer(playerName, color, id);
-    }
-
     @DeleteMapping("/delete/{id}")
     public void deleteGame(@PathVariable String id) {
         LOGGER.debug("Suppression de la partie en cours...");
