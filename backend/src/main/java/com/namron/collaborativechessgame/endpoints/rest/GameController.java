@@ -1,8 +1,9 @@
-package com.namron.collaborativechessgame.controller;
+package com.namron.collaborativechessgame.endpoints.rest;
 
 import com.namron.collaborativechessgame.game.GameRepositoryManager;
 import com.namron.collaborativechessgame.game.model.Game;
 import com.namron.collaborativechessgame.game.service.GameKeyGenerator;
+import com.namron.collaborativechessgame.player.models.Color;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,10 +25,10 @@ public class GameController {
         return gameId;
     }
 
-    @PostMapping("/join/{id}")
-    public void join(@PathVariable String id, @RequestBody String playerName) {
+    @PostMapping("/join/{id}/{color}")
+    public void join(@PathVariable String id, @PathVariable Color color, @RequestBody String playerName) {
         LOGGER.debug("Connexion à la partie en cours...");
-        gameRepositoryManager.connectPlayer(playerName, id);
+        gameRepositoryManager.connectPlayer(playerName, color, id);
     }
 
     @DeleteMapping("/delete/{id}")
