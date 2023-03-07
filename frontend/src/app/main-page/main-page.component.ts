@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { GameControllerApi } from 'src/generate-ressources/openapi';
 import { GameService } from '../service/game.service';
 
@@ -10,15 +10,15 @@ import { GameService } from '../service/game.service';
 })
 export class MainPageComponent implements OnInit {
 
-  gameFormGroup: FormGroup;
+  gameFormGroup: UntypedFormGroup;
   gameControllerApi: GameControllerApi = new GameControllerApi();
 
   constructor(private gameService: GameService) {
-    this.gameFormGroup = new FormGroup({
-      playerName: new FormControl("Michel", Validators.required),
-      color: new FormControl("0", Validators.required),
-      gameId: new FormControl(),
-      isJoiningGame: new FormControl(false, Validators.required)
+    this.gameFormGroup = new UntypedFormGroup({
+      playerName: new UntypedFormControl("Michel", Validators.required),
+      color: new UntypedFormControl("0", Validators.required),
+      gameId: new UntypedFormControl(),
+      isJoiningGame: new UntypedFormControl(false, Validators.required)
     });
   }
 
