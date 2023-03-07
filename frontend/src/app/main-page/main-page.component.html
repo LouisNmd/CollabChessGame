@@ -1,0 +1,10 @@
+<form [formGroup]="gameFormGroup">
+    <button type="button" (click)="switchIsJoiningGame()">{{this.gameFormGroup.get('isJoiningGame')?.value == true ? "Create a new game" : "Join a game"}}</button>
+    <select formControlName="color">
+        <option value=0>WHITE</option>
+        <option value=1>BLACK</option>
+    </select>
+    <input placeholder="Your name" formControlName="playerName">
+    <input placeholder="The game ID" *ngIf="this.gameFormGroup.get('isJoiningGame')?.value == true" formControlName="gameId">
+    <button type="submit" (click)="submitGameFormGroup()">{{this.gameFormGroup.get('isJoiningGame')?.value == true ? "Connect" : "Create"}}</button>
+</form>

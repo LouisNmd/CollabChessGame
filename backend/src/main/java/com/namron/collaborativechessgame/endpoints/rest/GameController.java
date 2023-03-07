@@ -3,10 +3,12 @@ package com.namron.collaborativechessgame.endpoints.rest;
 import com.namron.collaborativechessgame.game.GameRepositoryManager;
 import com.namron.collaborativechessgame.game.model.Game;
 import com.namron.collaborativechessgame.game.service.GameKeyGenerator;
-import com.namron.collaborativechessgame.player.models.Color;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/game")
 @RequiredArgsConstructor

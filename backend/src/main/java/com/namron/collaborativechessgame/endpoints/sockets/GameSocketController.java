@@ -7,16 +7,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
 @RequiredArgsConstructor
-@Component
 @RestController
 @Slf4j
 public class GameSocketController {
@@ -25,8 +22,9 @@ public class GameSocketController {
 
     /**
      * Endpoint WebSocket permettant a un joueur de voter pour un coup
-     * @param id l'id de la partie
-     * @param vote le vote du joueur au format echec (ex: a1c1)
+     *
+     * @param id     l'id de la partie
+     * @param vote   le vote du joueur au format echec (ex: a1c1)
      * @param player le joueur qui vote
      * @return la liste des votes
      */
@@ -40,8 +38,9 @@ public class GameSocketController {
 
     /**
      * Endpoint WebSocket permettant a un joueur de rejoindre une partie et renvois aux abonnes le nom du nouveau joueur
-     * @param id L'id de la partie
-     * @param color la couleur de l'equipe rejointe par le joueur
+     *
+     * @param id         L'id de la partie
+     * @param color      la couleur de l'equipe rejointe par le joueur
      * @param playerName le nom du joueur
      * @return le nom du joueur
      */

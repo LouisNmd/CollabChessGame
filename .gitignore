@@ -1,9 +1,10 @@
 # Angular related
-*/node_modules
-*/.vscode
-*/.angular
+node_modules
+.vscode
+.angular
+generate-ressources
+openapitools.json
 
 # IntelliJ related
-*/.idea
 .idea
 *.iml
