@@ -2,9 +2,14 @@ package com.namron.collaborativechessgame.game;
 
 import com.namron.collaborativechessgame.game.model.Game;
 import com.namron.collaborativechessgame.player.PlayerRepositoryManager;
+import com.namron.collaborativechessgame.player.models.Color;
+import com.namron.collaborativechessgame.player.models.Player;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -13,26 +18,38 @@ public class GameRepositoryManager {
     private final GameRepository gameRepository;
     private final PlayerRepositoryManager playerRepositoryManager;
 
+    public HashMap<String, Integer> vote(String gameId, String vote, Player player) {
+        try {
+            var game = gameRepository.findGameById(gameId);
+            var result = game.addVote(vote, player);
+            gameRepository.save(game);
+            return result;
+        } catch (Exception e) {
+            // TODO vérifier les exception de mongodb
+            throw new RuntimeException(e);
+        }
+    }
+
     public void create(Game game) {
         try {
             gameRepository.save(game);
             LOGGER.info("Création de la partie n°{}", game.getId());
-        } catch(Exception e) {
+        } catch (Exception e) {
             // TODO vérifier les exception de mongodb
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
-    public void connectPlayer(String playerName, String gameId) {
+    public void connectPlayer(String playerName, Color color, String gameId) {
         try {
             var game = gameRepository.findGameById(gameId);
             var player = playerRepositoryManager.retrieveOrCreate(playerName);
-            game.addPlayer(player);
+            game.addPlayer(player, color);
             gameRepository.save(game);
-            LOGGER.info("Le joueur {} à rejoint la partie {}", playerName, gameId);
+            LOGGER.info("Le joueur {} à rejoint la partie {} du coté des {}", playerName, gameId, color.value);
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
@@ -40,12 +57,12 @@ public class GameRepositoryManager {
         try {
             var game = gameRepository.findGameById(gameId);
             var player = playerRepositoryManager.retrieveOrCreate(playerName);
-            game.addPlayer(player);
+            game.removePlayer(player);
             gameRepository.save(game);
             LOGGER.info("Le joueur {} à rejoint la partie {}", playerName, gameId);
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
@@ -54,7 +71,7 @@ public class GameRepositoryManager {
             gameRepository.deleteById(id);
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }

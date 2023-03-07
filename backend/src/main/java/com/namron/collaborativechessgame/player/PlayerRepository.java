@@ -1,6 +1,5 @@
 package com.namron.collaborativechessgame.player;
 
-import com.namron.collaborativechessgame.game.model.Game;
 import com.namron.collaborativechessgame.player.models.Player;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
