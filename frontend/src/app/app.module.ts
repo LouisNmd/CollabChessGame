@@ -10,9 +10,7 @@ import { NgxChessBoardModule } from 'ngx-chess-board';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GameComponent } from './game/game.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-
-const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+import { RxStompService } from '@stomp/ng2-stompjs';
 
 @NgModule({
   declarations: [
@@ -27,10 +25,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     MatGridListModule,
     DragDropModule,
     NgxChessBoardModule.forRoot(),
-    SocketIoModule.forRoot(config),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RxStompService],
   bootstrap: [AppComponent]
 })
 

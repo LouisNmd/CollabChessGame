@@ -20,7 +20,6 @@ public class GameController {
 
     @PostMapping("/create")
     public String createNewGame() {
-        LOGGER.debug("Création d'une nouvelle partie en cours...");
         var gameId = keyGenerator.generate();
         var newGame = new Game(gameId);
         gameRepositoryManager.create(newGame);
@@ -29,7 +28,6 @@ public class GameController {
 
     @DeleteMapping("/delete/{id}")
     public void deleteGame(@PathVariable String id) {
-        LOGGER.debug("Suppression de la partie en cours...");
         gameRepositoryManager.delete(id);
     }
 }

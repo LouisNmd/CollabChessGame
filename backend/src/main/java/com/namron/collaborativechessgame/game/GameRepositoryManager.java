@@ -13,7 +13,6 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class GameRepositoryManager {
     private final GameRepository gameRepository;
     private final PlayerRepositoryManager playerRepositoryManager;
@@ -33,7 +32,6 @@ public class GameRepositoryManager {
     public void create(Game game) {
         try {
             gameRepository.save(game);
-            LOGGER.info("Création de la partie n°{}", game.getId());
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
             throw new RuntimeException(e);
@@ -46,7 +44,6 @@ public class GameRepositoryManager {
             var player = playerRepositoryManager.retrieveOrCreate(playerName);
             game.addPlayer(player, color);
             gameRepository.save(game);
-            LOGGER.info("Le joueur {} à rejoint la partie {} du coté des {}", playerName, gameId, color.value);
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
             throw new RuntimeException(e);
@@ -59,7 +56,6 @@ public class GameRepositoryManager {
             var player = playerRepositoryManager.retrieveOrCreate(playerName);
             game.removePlayer(player);
             gameRepository.save(game);
-            LOGGER.info("Le joueur {} à rejoint la partie {}", playerName, gameId);
         } catch (Exception e) {
             // TODO vérifier les exception de mongodb
             throw new RuntimeException(e);

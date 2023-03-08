@@ -1,11 +1,11 @@
 package com.namron.collaborativechessgame.player.models;
 
 public enum Color {
-    WHITE("white"), BLACK("black");
+    WHITE(0), BLACK(1);
 
-    public String value;
+    public int value;
 
-    Color(String value) {
+    Color(int value) {
         this.value = value;
     }
 }
